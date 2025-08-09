@@ -1,0 +1,34 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.git/
+.mypy_cache/
+.pytest_cache/
+.hypothesis/
+.DS_Store
+*.swp
+*.swo
+*~
+# Large model files
+ashes_model.pkl
+*.pkl
+# Documentation and marketing files
+README.md
+linkedin_post.md
+# Development files
+*.md 

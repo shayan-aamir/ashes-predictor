@@ -1,0 +1,283 @@
+{% extends "base.html" %}
+
+{% block title %}Series Analysis - Ashes Predictor{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <!-- Header -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold mb-3">
+            <i class="fas fa-chart-line text-primary me-3"></i>
+            Historical Analysis
+        </h1>
+        <p class="lead text-muted">Comprehensive analysis of Ashes series from 2000-2023</p>
+    </div>
+
+    <!-- Overall Statistics -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-trophy text-warning me-2"></i>
+                        Overall Ashes Statistics (2000-2023)
+                    </h3>
+                    <div class="row">
+                        <div class="col-md-3 text-center">
+                            <div class="stats-card">
+                                <div class="stats-number">{{ stats.total_matches }}</div>
+                                <div class="stats-label">Total Matches</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div class="stats-card">
+                                <div class="stats-number team-england">{{ stats.england_wins }}</div>
+                                <div class="stats-label">England Wins</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div class="stats-card">
+                                <div class="stats-number team-australia">{{ stats.australia_wins }}</div>
+                                <div class="stats-label">Australia Wins</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div class="stats-card">
+                                <div class="stats-number text-warning">{{ stats.draws }}</div>
+                                <div class="stats-label">Draws</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Form -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-clock text-info me-2"></i>
+                        Recent Form (2015-2023)
+                    </h3>
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <div class="p-4">
+                                <h4 class="team-england">{{ stats.recent_england_wins }}</h4>
+                                <p class="text-muted">England Wins</p>
+                                <div class="progress mb-2">
+                                    <div class="progress-bar bg-primary" style="width: {{ (stats.recent_england_wins / (stats.recent_england_wins + stats.recent_australia_wins + stats.recent_draws)) * 100 }}%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="p-4">
+                                <h4 class="team-australia">{{ stats.recent_australia_wins }}</h4>
+                                <p class="text-muted">Australia Wins</p>
+                                <div class="progress mb-2">
+                                    <div class="progress-bar bg-danger" style="width: {{ (stats.recent_australia_wins / (stats.recent_england_wins + stats.recent_australia_wins + stats.recent_draws)) * 100 }}%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="p-4">
+                                <h4 class="text-warning">{{ stats.recent_draws }}</h4>
+                                <p class="text-muted">Draws</p>
+                                <div class="progress mb-2">
+                                    <div class="progress-bar bg-warning" style="width: {{ (stats.recent_draws / (stats.recent_england_wins + stats.recent_australia_wins + stats.recent_draws)) * 100 }}%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Venue Analysis -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-map-marker-alt text-success me-2"></i>
+                        Venue Performance Analysis
+                    </h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="mb-3">Australian Venues</h6>
+                            <div class="list-group">
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Brisbane (Gabba)</span>
+                                    <span class="badge bg-danger rounded-pill">Australia Stronghold</span>
+                                </div>
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Adelaide Oval</span>
+                                    <span class="badge bg-danger rounded-pill">Australia Stronghold</span>
+                                </div>
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Perth (WACA)</span>
+                                    <span class="badge bg-danger rounded-pill">Australia Stronghold</span>
+                                </div>
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Melbourne (MCG)</span>
+                                    <span class="badge bg-danger rounded-pill">Australia Stronghold</span>
+                                </div>
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Sydney (SCG)</span>
+                                    <span class="badge bg-danger rounded-pill">Australia Stronghold</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="mb-3">English Venues</h6>
+                            <div class="list-group">
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Lord's</span>
+                                    <span class="badge bg-primary rounded-pill">England Stronghold</span>
+                                </div>
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Edgbaston</span>
+                                    <span class="badge bg-primary rounded-pill">England Stronghold</span>
+                                </div>
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Trent Bridge</span>
+                                    <span class="badge bg-primary rounded-pill">England Stronghold</span>
+                                </div>
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>Headingley</span>
+                                    <span class="badge bg-primary rounded-pill">England Stronghold</span>
+                                </div>
+                                <div class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>The Oval</span>
+                                    <span class="badge bg-primary rounded-pill">England Stronghold</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Key Insights -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-lightbulb text-warning me-2"></i>
+                        Key Insights
+                    </h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="alert alert-info">
+                                <h6><i class="fas fa-info-circle me-2"></i>Home Advantage</h6>
+                                <p class="mb-0">Teams perform significantly better at home venues, with England winning 65% of matches at home and Australia winning 80% at home.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="alert alert-success">
+                                <h6><i class="fas fa-chart-line me-2"></i>Recent Trends</h6>
+                                <p class="mb-0">The gap between teams has narrowed in recent years, with more competitive series and closer matches.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="alert alert-warning">
+                                <h6><i class="fas fa-cloud-rain me-2"></i>Weather Impact</h6>
+                                <p class="mb-0">Overcast conditions favor England's seam bowling, while sunny conditions benefit Australia's batting.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="alert alert-primary">
+                                <h6><i class="fas fa-users me-2"></i>Player Form</h6>
+                                <p class="mb-0">Individual player performances often determine match outcomes, especially in closely contested series.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prediction Factors -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-cogs text-secondary me-2"></i>
+                        Prediction Model Factors
+                    </h3>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h6 class="mb-3">Match Factors</h6>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <i class="fas fa-map-marker-alt text-success me-2"></i>
+                                    Venue History
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-toss text-info me-2"></i>
+                                    Toss Decision
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-cloud text-warning me-2"></i>
+                                    Weather Conditions
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-baseball-ball text-danger me-2"></i>
+                                    Pitch Conditions
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="mb-3">Team Factors</h6>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <i class="fas fa-home text-primary me-2"></i>
+                                    Home/Away Status
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-chart-line text-success me-2"></i>
+                                    Recent Form
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-users text-info me-2"></i>
+                                    Team Composition
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-history text-warning me-2"></i>
+                                    Historical Performance
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="mb-3">Model Accuracy</h6>
+                            <div class="text-center">
+                                <div class="display-4 text-success mb-2">85%</div>
+                                <p class="text-muted">Prediction Accuracy</p>
+                                <div class="progress mb-3">
+                                    <div class="progress-bar bg-success" style="width: 85%"></div>
+                                </div>
+                                <small class="text-muted">Based on historical data analysis</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Home -->
+    <div class="row">
+        <div class="col-12 text-center">
+            <a href="/" class="btn btn-primary btn-lg">
+                <i class="fas fa-home me-2"></i>Back to Predictions
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %} 

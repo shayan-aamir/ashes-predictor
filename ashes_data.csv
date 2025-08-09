@@ -1,0 +1,71 @@
+Year,Series,Match_Number,Venue,Home_Team,Away_Team,Toss_Winner,Toss_Decision,Result,Winning_Team,Player_of_Match,Home_Score,Away_Score,Home_Team_Form,Away_Team_Form,Venue_Type,Pitch_Condition,Weather
+2001,Ashes,1,Edgbaston,England,Australia,Australia,Bat,Australia won by 118 runs,Australia,Shane Warne,294,279,Good,Excellent,Traditional,Seaming,Overcast
+2001,Ashes,2,Lord's,England,Australia,England,Bat,Australia won by 8 wickets,Australia,Glenn McGrath,187,401,Good,Excellent,Traditional,Seaming,Sunny
+2001,Ashes,3,Trent Bridge,England,Australia,Australia,Bat,Australia won by 7 wickets,Australia,Mark Waugh,190,447,Good,Excellent,Traditional,Seaming,Overcast
+2001,Ashes,4,Headingley,England,Australia,England,Bat,Australia won by an innings and 25 runs,Australia,Adam Gilchrist,309,447,Good,Excellent,Traditional,Seaming,Sunny
+2001,Ashes,5,The Oval,England,Australia,Australia,Bat,Australia won by an innings and 25 runs,Australia,Shane Warne,432,641,Good,Excellent,Traditional,Seaming,Sunny
+2002,Ashes,1,Brisbane,Australia,England,Australia,Bat,Australia won by 384 runs,Australia,Ricky Ponting,492,79,Excellent,Good,Modern,Hard,Sunny
+2002,Ashes,2,Adelaide,Australia,England,England,Bat,Australia won by an innings and 51 runs,Australia,Shane Warne,552,196,Excellent,Good,Modern,Hard,Sunny
+2002,Ashes,3,Perth,Australia,England,Australia,Bat,Australia won by an innings and 48 runs,Australia,Justin Langer,456,185,Excellent,Good,Modern,Hard,Sunny
+2002,Ashes,4,Melbourne,Australia,England,Australia,Bat,Australia won by 5 wickets,Australia,Steve Waugh,551,387,Excellent,Good,Modern,Hard,Sunny
+2002,Ashes,5,Sydney,Australia,England,England,Bat,Australia won by 225 runs,Australia,Shane Warne,452,184,Excellent,Good,Modern,Hard,Sunny
+2005,Ashes,1,Lord's,England,Australia,Australia,Bat,Australia won by 239 runs,Australia,Glenn McGrath,190,384,Good,Excellent,Traditional,Seaming,Overcast
+2005,Ashes,2,Edgbaston,England,Australia,England,Bat,England won by 2 runs,England,Andrew Flintoff,407,308,Good,Excellent,Traditional,Seaming,Overcast
+2005,Ashes,3,Old Trafford,England,Australia,Australia,Bat,Match Drawn,Draw,Shane Warne,444,302,Good,Excellent,Traditional,Seaming,Overcast
+2005,Ashes,4,Trent Bridge,England,Australia,England,Bat,England won by 3 wickets,England,Andrew Flintoff,477,218,Good,Excellent,Traditional,Seaming,Overcast
+2005,Ashes,5,The Oval,England,Australia,Australia,Bat,Match Drawn,Draw,Kevin Pietersen,373,367,Good,Excellent,Traditional,Seaming,Sunny
+2006,Ashes,1,Brisbane,Australia,England,Australia,Bat,Australia won by 277 runs,Australia,Ricky Ponting,602,157,Excellent,Good,Modern,Hard,Sunny
+2006,Ashes,2,Adelaide,Australia,England,England,Bat,Australia won by 6 wickets,Australia,Ricky Ponting,513,551,Excellent,Good,Modern,Hard,Sunny
+2006,Ashes,3,Perth,Australia,England,Australia,Bat,Australia won by 206 runs,Australia,Adam Gilchrist,244,350,Excellent,Good,Modern,Hard,Sunny
+2006,Ashes,4,Melbourne,Australia,England,Australia,Bat,Australia won by an innings and 99 runs,Australia,Shane Warne,419,161,Excellent,Good,Modern,Hard,Sunny
+2006,Ashes,5,Sydney,Australia,England,England,Bat,Australia won by 10 wickets,Australia,Stuart Clark,393,291,Excellent,Good,Modern,Hard,Sunny
+2009,Ashes,1,Cardiff,England,Australia,Australia,Bat,Match Drawn,Draw,Paul Collingwood,435,674,Good,Excellent,Modern,Hard,Overcast
+2009,Ashes,2,Lord's,England,Australia,England,Bat,England won by 115 runs,England,Andrew Strauss,425,215,Good,Excellent,Traditional,Seaming,Sunny
+2009,Ashes,3,Edgbaston,England,Australia,Australia,Bat,Match Drawn,Draw,Michael Clarke,376,263,Good,Excellent,Traditional,Seaming,Overcast
+2009,Ashes,4,Headingley,England,Australia,England,Bat,Australia won by an innings and 80 runs,Australia,Stuart Clark,102,445,Good,Excellent,Traditional,Seaming,Overcast
+2009,Ashes,5,The Oval,England,Australia,England,Bat,England won by 197 runs,England,Stuart Broad,332,160,Good,Excellent,Traditional,Seaming,Sunny
+2010,Ashes,1,Brisbane,Australia,England,Australia,Bat,Match Drawn,Draw,Alastair Cook,481,260,Good,Good,Modern,Hard,Sunny
+2010,Ashes,2,Adelaide,Australia,England,England,Bat,England won by an innings and 71 runs,England,Kevin Pietersen,245,620,Good,Good,Modern,Hard,Sunny
+2010,Ashes,3,Perth,Australia,England,Australia,Bat,Australia won by 267 runs,Australia,Mitchell Johnson,268,187,Good,Good,Modern,Hard,Sunny
+2010,Ashes,4,Melbourne,Australia,England,England,Bat,England won by an innings and 157 runs,England,Jonathan Trott,98,513,Good,Good,Modern,Hard,Sunny
+2010,Ashes,5,Sydney,Australia,England,Australia,Bat,England won by an innings and 83 runs,England,Alastair Cook,280,644,Good,Good,Modern,Hard,Sunny
+2013,Ashes,1,Trent Bridge,England,Australia,Australia,Bat,England won by 14 runs,England,James Anderson,215,296,Good,Good,Traditional,Seaming,Overcast
+2013,Ashes,2,Lord's,England,Australia,England,Bat,England won by 347 runs,England,Joe Root,361,128,Good,Good,Traditional,Seaming,Sunny
+2013,Ashes,3,Old Trafford,England,Australia,Australia,Bat,Match Drawn,Draw,Ryan Harris,527,368,Good,Good,Traditional,Seaming,Overcast
+2013,Ashes,4,Riverside,England,Australia,England,Bat,England won by 74 runs,England,Stuart Broad,330,224,Good,Good,Traditional,Seaming,Overcast
+2013,Ashes,5,The Oval,England,Australia,England,Bat,Match Drawn,Draw,Shane Watson,492,492,Good,Good,Traditional,Seaming,Sunny
+2013,Ashes,1,Brisbane,Australia,England,Australia,Bat,Australia won by 381 runs,Australia,Mitchell Johnson,295,136,Good,Good,Modern,Hard,Sunny
+2013,Ashes,2,Adelaide,Australia,England,England,Bat,Australia won by 218 runs,Australia,Mitchell Johnson,570,172,Good,Good,Modern,Hard,Sunny
+2013,Ashes,3,Perth,Australia,England,Australia,Bat,Australia won by 150 runs,Australia,Shane Watson,385,353,Good,Good,Modern,Hard,Sunny
+2013,Ashes,4,Melbourne,Australia,England,Australia,Bat,Australia won by 8 wickets,Australia,Mitchell Johnson,204,255,Good,Good,Modern,Hard,Sunny
+2013,Ashes,5,Sydney,Australia,England,Australia,Bat,Australia won by 281 runs,Australia,Ryan Harris,326,155,Good,Good,Modern,Hard,Sunny
+2015,Ashes,1,Cardiff,England,Australia,Australia,Bat,England won by 169 runs,England,Joe Root,430,308,Good,Good,Modern,Hard,Overcast
+2015,Ashes,2,Lord's,England,Australia,England,Bat,Australia won by 405 runs,Australia,Steve Smith,566,312,Good,Good,Traditional,Seaming,Sunny
+2015,Ashes,3,Edgbaston,England,Australia,England,Bat,England won by 8 wickets,England,Steven Finn,281,136,Good,Good,Traditional,Seaming,Overcast
+2015,Ashes,4,Trent Bridge,England,Australia,England,Bat,England won by an innings and 78 runs,England,Stuart Broad,391,60,Good,Good,Traditional,Seaming,Overcast
+2015,Ashes,5,The Oval,England,Australia,Australia,Bat,Australia won by an innings and 46 runs,Australia,Steve Smith,481,149,Good,Good,Traditional,Seaming,Sunny
+2017,Ashes,1,Brisbane,Australia,England,Australia,Bat,Australia won by 10 wickets,Australia,Pat Cummins,328,195,Good,Good,Modern,Hard,Sunny
+2017,Ashes,2,Adelaide,Australia,England,Australia,Bat,Australia won by 120 runs,Australia,Pat Cummins,442,227,Good,Good,Modern,Hard,Sunny
+2017,Ashes,3,Perth,Australia,England,Australia,Bat,Australia won by an innings and 41 runs,Australia,Mitchell Starc,662,403,Good,Good,Modern,Hard,Sunny
+2017,Ashes,4,Melbourne,Australia,England,Australia,Bat,Match Drawn,Draw,Alastair Cook,327,491,Good,Good,Modern,Hard,Sunny
+2017,Ashes,5,Sydney,Australia,England,Australia,Bat,Match Drawn,Draw,James Anderson,649,346,Good,Good,Modern,Hard,Sunny
+2019,Ashes,1,Edgbaston,England,Australia,Australia,Bat,Australia won by 251 runs,Australia,Steve Smith,284,487,Good,Good,Traditional,Seaming,Overcast
+2019,Ashes,2,Lord's,England,Australia,England,Bat,Match Drawn,Draw,Ben Stokes,258,250,Good,Good,Traditional,Seaming,Overcast
+2019,Ashes,3,Headingley,England,Australia,England,Bat,England won by 1 wicket,England,Ben Stokes,67,179,Good,Good,Traditional,Seaming,Overcast
+2019,Ashes,4,Old Trafford,England,Australia,Australia,Bat,Australia won by 185 runs,Australia,Steve Smith,497,301,Good,Good,Traditional,Seaming,Overcast
+2019,Ashes,5,The Oval,England,Australia,England,Bat,England won by 135 runs,England,Jack Leach,329,146,Good,Good,Traditional,Seaming,Sunny
+2021,Ashes,1,Brisbane,Australia,England,Australia,Bat,Australia won by 9 wickets,Australia,Travis Head,425,147,Good,Good,Modern,Hard,Sunny
+2021,Ashes,2,Adelaide,Australia,England,Australia,Bat,Australia won by 275 runs,Australia,Marnus Labuschagne,473,236,Good,Good,Modern,Hard,Sunny
+2021,Ashes,3,Melbourne,Australia,England,England,Bat,Australia won by an innings and 14 runs,Australia,Scott Boland,267,185,Good,Good,Modern,Hard,Sunny
+2021,Ashes,4,Sydney,Australia,England,Australia,Bat,Match Drawn,Draw,Jonny Bairstow,416,294,Good,Good,Modern,Hard,Sunny
+2021,Ashes,5,Hobart,Australia,England,Australia,Bat,Australia won by 146 runs,Australia,Travis Head,155,124,Good,Good,Modern,Hard,Sunny
+2023,Ashes,1,Edgbaston,England,Australia,England,Bat,Australia won by 2 wickets,Australia,Usman Khawaja,393,386,Good,Good,Traditional,Seaming,Overcast
+2023,Ashes,2,Lord's,England,Australia,Australia,Bat,Australia won by 43 runs,Australia,Steve Smith,416,279,Good,Good,Traditional,Seaming,Sunny
+2023,Ashes,3,Headingley,England,Australia,England,Bat,England won by 3 wickets,England,Mark Wood,237,224,Good,Good,Traditional,Seaming,Overcast
+2023,Ashes,4,Old Trafford,England,Australia,England,Bat,Match Drawn,Draw,Zak Crawley,592,317,Good,Good,Traditional,Seaming,Overcast
+2023,Ashes,5,The Oval,England,Australia,England,Bat,England won by 49 runs,England,Chris Woakes,283,334,Good,Good,Traditional,Seaming,Sunny
+2025,Ashes,1,Optus Stadium,Australia,England,Australia,Bat,Not Played Yet,Not Played Yet,Not Played Yet,0,0,Good,Good,Modern,Hard,Sunny
+2025,Ashes,2,The Gabba,Australia,England,England,Bat,Not Played Yet,Not Played Yet,Not Played Yet,0,0,Good,Good,Modern,Hard,Sunny
+2025,Ashes,3,Adelaide Oval,Australia,England,Australia,Bat,Not Played Yet,Not Played Yet,Not Played Yet,0,0,Good,Good,Modern,Hard,Sunny
+2025,Ashes,4,Melbourne Cricket Ground,Australia,England,England,Bat,Not Played Yet,Not Played Yet,Not Played Yet,0,0,Good,Good,Modern,Hard,Sunny
+2025,Ashes,5,Sydney Cricket Ground,Australia,England,Australia,Bat,Not Played Yet,Not Played Yet,Not Played Yet,0,0,Good,Good,Modern,Hard,Sunny 

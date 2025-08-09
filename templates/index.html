@@ -1,0 +1,358 @@
+{% extends "base.html" %}
+
+{% block title %}Ashes 2025-2026 Predictor - Home{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <!-- Header Section -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold mb-3">
+            <i class="fas fa-trophy text-warning me-3"></i>
+            Ashes 2025-2026 Predictor
+        </h1>
+        <p class="lead text-muted">Predicting cricket's greatest rivalry using machine learning and historical data</p>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="team-australia">
+                    <i class="fas fa-flag me-2"></i>
+                    <strong>Australia (Home)</strong>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="team-england">
+                    <i class="fas fa-flag me-2"></i>
+                    <strong>England (Away)</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Series Summary -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-chart-line text-primary me-2"></i>
+                        Series Prediction Summary
+                    </h3>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="stats-card">
+                                <div class="stats-number team-australia">{{ series_summary.home_wins }}</div>
+                                <div class="stats-label">Australia Wins</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stats-card">
+                                <div class="stats-number team-england">{{ series_summary.away_wins }}</div>
+                                <div class="stats-label">England Wins</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stats-card">
+                                <div class="stats-number text-warning">{{ series_summary.draws }}</div>
+                                <div class="stats-label">Draws</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stats-card">
+                                <div class="stats-number text-success">{{ series_summary.series_winner }}</div>
+                                <div class="stats-label">Series Winner</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Match Predictions -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <h3 class="mb-4">
+                <i class="fas fa-calendar-alt text-primary me-2"></i>
+                Match-by-Match Predictions
+            </h3>
+            
+            {% for prediction in predictions %}
+            <div class="match-prediction">
+                <div class="row align-items-center">
+                    <div class="col-md-3">
+                        <h5 class="mb-2">
+                            <i class="fas fa-cricket-bat-ball me-2"></i>
+                            Test {{ prediction.match_number }}
+                        </h5>
+                        <p class="mb-0">
+                            <i class="fas fa-map-marker-alt me-2"></i>
+                            {{ prediction.venue }}
+                        </p>
+                        {% if prediction.match_number == 1 %}
+                        <small class="text-light">
+                            <i class="fas fa-calendar me-1"></i>Nov 21-25, 2025 (2:30 AM UK)
+                        </small>
+                        {% elif prediction.match_number == 2 %}
+                        <small class="text-light">
+                            <i class="fas fa-calendar me-1"></i>Dec 4-8, 2025 (4:30 AM UK)
+                            <br><i class="fas fa-moon me-1"></i>Day/Night Test
+                        </small>
+                        {% elif prediction.match_number == 3 %}
+                        <small class="text-light">
+                            <i class="fas fa-calendar me-1"></i>Dec 17-21, 2025 (12:00 AM UK)
+                        </small>
+                        {% elif prediction.match_number == 4 %}
+                        <small class="text-light">
+                            <i class="fas fa-calendar me-1"></i>Dec 25-29, 2025 (11:30 PM UK)
+                        </small>
+                        {% elif prediction.match_number == 5 %}
+                        <small class="text-light">
+                            <i class="fas fa-calendar me-1"></i>Jan 4-8, 2026 (11:30 PM UK)
+                        </small>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <h6 class="mb-2">Predicted Winner</h6>
+                        <div class="badge bg-light text-dark fs-6 px-3 py-2">
+                            {% if prediction.predicted_winner == 'England' %}
+                                <span class="team-england">{{ prediction.predicted_winner }}</span>
+                            {% elif prediction.predicted_winner == 'Australia' %}
+                                <span class="team-australia">{{ prediction.predicted_winner }}</span>
+                            {% else %}
+                                <span class="text-warning">{{ prediction.predicted_winner }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="mb-2">Win Probabilities</h6>
+                        <div class="row">
+                            <div class="col-4">
+                                <small class="team-australia">Australia</small>
+                                <div class="probability-bar">
+                                    <div class="probability-fill australia-fill" style="width: {{ (prediction.home_win_probability * 100) | round(1) }}%"></div>
+                                </div>
+                                <small>{{ (prediction.home_win_probability * 100) | round(1) }}%</small>
+                            </div>
+                            <div class="col-4">
+                                <small class="team-england">England</small>
+                                <div class="probability-bar">
+                                    <div class="probability-fill england-fill" style="width: {{ (prediction.away_win_probability * 100) | round(1) }}%"></div>
+                                </div>
+                                <small>{{ (prediction.away_win_probability * 100) | round(1) }}%</small>
+                            </div>
+                            <div class="col-4">
+                                <small class="text-warning">Draw</small>
+                                <div class="probability-bar">
+                                    <div class="probability-fill draw-fill" style="width: {{ (prediction.draw_probability * 100) | round(1) }}%"></div>
+                                </div>
+                                <small>{{ (prediction.draw_probability * 100) | round(1) }}%</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Players of the Series -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-star text-warning me-2"></i>
+                        Players of the Series
+                    </h3>
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <div class="p-3">
+                                <i class="fas fa-crown text-warning fs-1 mb-3"></i>
+                                <h5 class="team-england">{{ players_of_series.england_player_of_series }}</h5>
+                                <p class="text-muted">England Player of the Series</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="p-3">
+                                <i class="fas fa-trophy text-warning fs-1 mb-3"></i>
+                                <h5 class="text-success">{{ players_of_series.overall_player_of_series }}</h5>
+                                <p class="text-muted">Overall Player of the Series</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="p-3">
+                                <i class="fas fa-medal text-warning fs-1 mb-3"></i>
+                                <h5 class="team-australia">{{ players_of_series.australia_player_of_series }}</h5>
+                                <p class="text-muted">Australia Player of the Series</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI-Generated Playing 11s for Each Venue -->
+    {% if all_playing_11s %}
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-robot text-primary me-2"></i>
+                        AI-Generated Playing 11s (Based on Pitch Conditions)
+                    </h3>
+                    
+                    {% for venue, data in all_playing_11s.items() %}
+                    <div class="venue-playing-11 mb-4">
+                        <h5 class="mb-3">
+                            <i class="fas fa-map-marker-alt me-2"></i>
+                            {{ venue }} - {{ data.pitch_condition }}
+                        </h5>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="team-australia mb-3">
+                                    <i class="fas fa-flag me-2"></i>Australia Playing 11
+                                </h6>
+                                <ul class="list-group list-group-flush">
+                                    {% for player in data.australia.playing_11 %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span>
+                                            {{ player.position }}. {{ player.name }}
+                                            {% if player.captain == player.name %}
+                                                <span class="badge bg-success ms-1">C</span>
+                                            {% endif %}
+                                        </span>
+                                        <span class="badge bg-primary rounded-pill">{{ player.role }}</span>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                {% if data.australia.playing_11[0].captain %}
+                                <div class="mt-2">
+                                    <small class="text-muted">
+                                        <strong>Captain:</strong> {{ data.australia.playing_11[0].captain }}
+                                    </small>
+                                </div>
+                                {% endif %}
+
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <h6 class="team-england mb-3">
+                                    <i class="fas fa-flag me-2"></i>England Playing 11
+                                </h6>
+                                <ul class="list-group list-group-flush">
+                                    {% for player in data.england.playing_11 %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span>
+                                            {{ player.position }}. {{ player.name }}
+                                            {% if player.captain == player.name %}
+                                                <span class="badge bg-success ms-1">C</span>
+                                            {% endif %}
+                                        </span>
+                                        <span class="badge bg-primary rounded-pill">{{ player.role }}</span>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                {% if data.england.playing_11[0].captain %}
+                                <div class="mt-2">
+                                    <small class="text-muted">
+                                        <strong>Captain:</strong> {{ data.england.playing_11[0].captain }}
+                                    </small>
+                                </div>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <small class="text-info">
+                                <i class="fas fa-lightbulb me-1"></i>
+                                <strong>Strategy:</strong> {{ data.australia.strategy }}
+                            </small>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Series Combined 11 -->
+    {% if series_combined_11 %}
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-users text-success me-2"></i>
+                        Series Combined 11
+                    </h3>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h6 class="mb-3">Best Players from Both Teams</h6>
+                            <ul class="list-group list-group-flush">
+                                {% for player in series_combined_11 %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>
+                                        {{ player.position }}. {{ player.name }} ({{ player.team }})
+                                        {% if player.captain == player.name %}
+                                            <span class="badge bg-success ms-1">C</span>
+                                        {% elif player.vice_captain == player.name %}
+                                            <span class="badge bg-warning ms-1">VC</span>
+                                        {% endif %}
+                                    </span>
+                                    <span class="badge bg-primary rounded-pill">{{ player.role }}</span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% if series_combined_11[0].captain %}
+                            <div class="mt-2">
+                                <small class="text-muted">
+                                    <strong>Captain:</strong> {{ series_combined_11[0].captain }} | 
+                                    <strong>Vice Captain:</strong> {{ series_combined_11[0].vice_captain }}
+                                </small>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="mb-3">Selection Criteria</h6>
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <p class="text-muted">Players selected based on:</p>
+                                    <ul class="list-unstyled">
+                                        <li>• Batting averages</li>
+                                        <li>• Bowling averages</li>
+                                        <li>• Role suitability</li>
+                                        <li>• Team balance</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Call to Action -->
+    <div class="row">
+        <div class="col-12 text-center">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-3">Want to explore more?</h4>
+                    <p class="card-text">Check out our detailed analysis and historical statistics</p>
+                    <a href="/series_analysis" class="btn btn-primary me-3">
+                        <i class="fas fa-chart-bar me-2"></i>View Analysis
+                    </a>
+                    <a href="/about" class="btn btn-outline-primary">
+                        <i class="fas fa-info-circle me-2"></i>Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
