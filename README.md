@@ -130,9 +130,6 @@ This project implements multiple recommendation system algorithms for the recomm
 - **ESPN Cricinfo**: Cricket data format support (structure ready for API integration)
 - **Environment Variables**: Secure API key management
 
-### Deployment
-- **Vercel**: Cloud hosting platform
-- **Gunicorn**: WSGI server for production
 
 ## 📁 Project Structure
 
@@ -208,19 +205,6 @@ ASHES_PREDICTOR/
 6. **Access the application**
    - Open your browser and go to `http://localhost:5000`
 
-### Vercel Deployment
-
-1. **Push to GitHub**
-   ```bash
-   git add .
-   git commit -m "Initial commit"
-   git push origin main
-   ```
-
-2. **Deploy on Vercel**
-   - Connect your GitHub repository to Vercel
-   - Vercel will automatically detect the Flask app
-   - Set environment variables in Vercel dashboard if using DeepSeek API
 
 ## 📊 Data Sources
 
@@ -251,7 +235,7 @@ ASHES_PREDICTOR/
 - **Venue-Adaptive**: Adjusts selection based on pitch conditions
 - **Captain Priority**: Ensures leadership roles are properly assigned
 
-## 🤖 Recommendation System Algorithms (For Course)
+## 🤖 Recommendation System Algorithms
 
 ### Algorithm Details
 
@@ -296,9 +280,6 @@ ASHES_PREDICTOR/
 - **Coverage**: Covers all player types and roles
 - **Scalability**: Efficient algorithms suitable for real-time recommendations
 
-## 🌐 Live Demo
-
-The application is deployed and accessible at: [Your Vercel URL]
 
 ## 🤝 Contributing
 
@@ -308,9 +289,6 @@ The application is deployed and accessible at: [Your Vercel URL]
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## 🙏 Acknowledgments
 
@@ -319,10 +297,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - **Vercel** for hosting and deployment
 - **Bootstrap** for the beautiful UI framework
 
-## 📞 Contact
-
-For questions or support, please open an issue on GitHub or contact the development team.
-
----
 
 **Note**: This is a prediction system based on historical data and AI analysis. Actual match results may vary due to various factors including player form, weather conditions, and other unpredictable elements. 
