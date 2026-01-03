@@ -1,0 +1,814 @@
+{% extends "base.html" %}
+
+{% block title %}Ashes 2025-2026 Predictor - Home{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold mb-3">
+            <i class="fas fa-trophy text-warning me-3"></i>
+            Ashes 2025-2026 Predictor
+        </h1>
+        <p class="lead text-muted">Predicting cricket's greatest rivalry using machine learning and historical data</p>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="team-australia">
+                    <i class="fas fa-flag me-2"></i>
+                    <strong>Australia (Home)</strong>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="team-england">
+                    <i class="fas fa-flag me-2"></i>
+                    <strong>England (Away)</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5" id="recommendations">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-chart-line text-primary me-2"></i>
+                        Series Prediction Summary
+                    </h3>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="stats-card">
+                                <div class="stats-number team-australia">{{ series_summary.home_wins }}</div>
+                                <div class="stats-label">Australia Wins</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stats-card">
+                                <div class="stats-number team-england">{{ series_summary.away_wins }}</div>
+                                <div class="stats-label">England Wins</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stats-card">
+                                <div class="stats-number text-warning">{{ series_summary.draws }}</div>
+                                <div class="stats-label">Draws</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stats-card">
+                                <div class="stats-number text-success">{{ series_summary.series_winner }}</div>
+                                <div class="stats-label">Series Winner</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12">
+            <h3 class="mb-4">
+                <i class="fas fa-calendar-alt text-primary me-2"></i>
+                Match-by-Match Predictions
+            </h3>
+            
+            {% for prediction in predictions %}
+            <div class="match-prediction">
+                <div class="row align-items-center">
+                    <div class="col-md-3">
+                        <h5 class="mb-2">
+                            <i class="fas fa-cricket-bat-ball me-2"></i>
+                            Test {{ prediction.match_number }}
+                        </h5>
+                        <p class="mb-0">
+                            <i class="fas fa-map-marker-alt me-2"></i>
+                            {{ prediction.venue }}
+                        </p>
+                        {% if prediction.match_number == 1 %}
+                        <small class="text-light">
+                            <i class="fas fa-calendar me-1"></i>Nov 22-26, 2025
+                            <br><i class="fas fa-clock me-1"></i>7:30 AM PKT (Perth)
+                        </small>
+                        {% elif prediction.match_number == 2 %}
+                        <small class="text-light">
+                            <i class="fas fa-calendar me-1"></i>Dec 4-8, 2025
+                            <br><i class="fas fa-clock me-1"></i>9:30 AM PKT (Brisbane)
+                            <br><i class="fas fa-moon me-1"></i>Day/Night Test
+                        </small>
+                        {% elif prediction.match_number == 3 %}
+                        <small class="text-light">
+                            <i class="fas fa-calendar me-1"></i>Dec 12-16, 2025
+                            <br><i class="fas fa-clock me-1"></i>5:00 AM PKT (Adelaide)
+                        </small>
+                        {% elif prediction.match_number == 4 %}
+                        <small class="text-light">
+                            <i class="fas fa-calendar me-1"></i>Dec 26-30, 2025
+                            <br><i class="fas fa-clock me-1"></i>4:30 AM PKT (Melbourne)
+                        </small>
+                        {% elif prediction.match_number == 5 %}
+                        <small class="text-light">
+                            <i class="fas fa-calendar me-1"></i>Jan 3-7, 2026
+                            <br><i class="fas fa-clock me-1"></i>4:30 AM PKT (Sydney)
+                        </small>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <h6 class="mb-2">Predicted Winner</h6>
+                        <div class="badge bg-light text-dark fs-6 px-3 py-2">
+                            {% if prediction.predicted_winner == 'England' %}
+                                <span class="team-england">{{ prediction.predicted_winner }}</span>
+                            {% elif prediction.predicted_winner == 'Australia' %}
+                                <span class="team-australia">{{ prediction.predicted_winner }}</span>
+                            {% else %}
+                                <span class="text-warning">{{ prediction.predicted_winner }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="mb-2">Win Probabilities</h6>
+                        <div class="row">
+                            <div class="col-4">
+                                <small class="team-australia">Australia</small>
+                                <div class="probability-bar">
+                                    <div class="probability-fill australia-fill" style="width: {{ (prediction.home_win_probability * 100) | round(1) }}%"></div>
+                                </div>
+                                <small>{{ (prediction.home_win_probability * 100) | round(1) }}%</small>
+                            </div>
+                            <div class="col-4">
+                                <small class="team-england">England</small>
+                                <div class="probability-bar">
+                                    <div class="probability-fill england-fill" style="width: {{ (prediction.away_win_probability * 100) | round(1) }}%"></div>
+                                </div>
+                                <small>{{ (prediction.away_win_probability * 100) | round(1) }}%</small>
+                            </div>
+                            <div class="col-4">
+                                <small class="text-warning">Draw</small>
+                                <div class="probability-bar">
+                                    <div class="probability-fill draw-fill" style="width: {{ (prediction.draw_probability * 100) | round(1) }}%"></div>
+                                </div>
+                                <small>{{ (prediction.draw_probability * 100) | round(1) }}%</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-star text-warning me-2"></i>
+                        Players of the Series
+                    </h3>
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            <div class="p-3">
+                                <i class="fas fa-crown text-warning fs-1 mb-3"></i>
+                                <h5 class="team-england">{{ players_of_series.england_player_of_series }}</h5>
+                                <p class="text-muted">England Player of the Series</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="p-3">
+                                <i class="fas fa-trophy text-warning fs-1 mb-3"></i>
+                                <h5 class="text-success">{{ players_of_series.overall_player_of_series }}</h5>
+                                <p class="text-muted">Overall Player of the Series</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="p-3">
+                                <i class="fas fa-medal text-warning fs-1 mb-3"></i>
+                                <h5 class="team-australia">{{ players_of_series.australia_player_of_series }}</h5>
+                                <p class="text-muted">Australia Player of the Series</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if all_playing_11s %}
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-robot text-primary me-2"></i>
+                        AI-Generated Playing 11s (Based on Pitch Conditions)
+                    </h3>
+                    
+                    {% for venue, data in all_playing_11s.items() %}
+                    <div class="venue-playing-11 mb-4">
+                        <h5 class="mb-3">
+                            <i class="fas fa-map-marker-alt me-2"></i>
+                            {{ venue }} - {{ data.pitch_condition }}
+                        </h5>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="team-australia mb-3">
+                                    <i class="fas fa-flag me-2"></i>Australia Playing 11
+                                </h6>
+                                <ul class="list-group list-group-flush">
+                                    {% for player in data.australia.playing_11 %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span>
+                                            {{ player.position }}. {{ player.name }}
+                                            {% if player.captain == player.name %}
+                                                <span class="badge bg-success ms-1">C</span>
+                                            {% endif %}
+                                        </span>
+                                        <span class="badge bg-primary rounded-pill">{{ player.role }}</span>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                {% if data.australia.playing_11[0].captain %}
+                                <div class="mt-2">
+                                    <small class="text-muted">
+                                        <strong>Captain:</strong> {{ data.australia.playing_11[0].captain }}
+                                    </small>
+                                </div>
+                                {% endif %}
+
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <h6 class="team-england mb-3">
+                                    <i class="fas fa-flag me-2"></i>England Playing 11
+                                </h6>
+                                <ul class="list-group list-group-flush">
+                                    {% for player in data.england.playing_11 %}
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <span>
+                                            {{ player.position }}. {{ player.name }}
+                                            {% if player.captain == player.name %}
+                                                <span class="badge bg-success ms-1">C</span>
+                                            {% endif %}
+                                        </span>
+                                        <span class="badge bg-primary rounded-pill">{{ player.role }}</span>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                {% if data.england.playing_11[0].captain %}
+                                <div class="mt-2">
+                                    <small class="text-muted">
+                                        <strong>Captain:</strong> {{ data.england.playing_11[0].captain }}
+                                    </small>
+                                </div>
+                                {% endif %}
+
+                            </div>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <small class="text-info">
+                                <i class="fas fa-lightbulb me-1"></i>
+                                <strong>Strategy:</strong> {{ data.australia.strategy }}
+                            </small>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if series_combined_11 %}
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-users text-success me-2"></i>
+                        Series Combined 11
+                    </h3>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h6 class="mb-3">Best Players from Both Teams</h6>
+                            <ul class="list-group list-group-flush">
+                                {% for player in series_combined_11 %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span>
+                                        {{ player.position }}. {{ player.name }} ({{ player.team }})
+                                        {% if player.captain == player.name %}
+                                            <span class="badge bg-success ms-1">C</span>
+                                        {% elif player.vice_captain == player.name %}
+                                            <span class="badge bg-warning ms-1">VC</span>
+                                        {% endif %}
+                                    </span>
+                                    <span class="badge bg-primary rounded-pill">{{ player.role }}</span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% if series_combined_11[0].captain %}
+                            <div class="mt-2">
+                                <small class="text-muted">
+                                    <strong>Captain:</strong> {{ series_combined_11[0].captain }} | 
+                                    <strong>Vice Captain:</strong> {{ series_combined_11[0].vice_captain }}
+                                </small>
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="mb-3">Selection Criteria</h6>
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <p class="text-muted">Players selected based on:</p>
+                                    <ul class="list-unstyled">
+                                        <li>• Batting averages</li>
+                                        <li>• Bowling averages</li>
+                                        <li>• Role suitability</li>
+                                        <li>• Team balance</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-robot text-primary me-2"></i>
+                        Recommendation System 
+                    </h3>
+                    <p class="text-muted mb-4">
+                        This section demonstrates various recommendation system algorithms implemented for the course:                                          
+                        Content-Based Filtering, Collaborative Filtering, Hybrid Recommendations, and more.                                                     
+                        <strong>Ashes squads only (Australia &amp; England).</strong>
+                    </p>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <label for="countrySelect" class="form-label"><strong>Filter by Team (Optional):</strong></label>                          
+                                    <select id="countrySelect" class="form-select">
+                                        <option value="">Both Teams</option>    
+                                        <option value="England">England</option>
+                                        <option value="Australia">Australia</option>                                                                            
+                                    </select>
+                                    <small class="text-muted">Select a team to filter recommendations, or leave blank for both Ashes teams</small>              
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-filter text-info me-2"></i>
+                                        Content-Based Filtering
+                                    </h5>
+                                    <p class="card-text small">Recommends players based on user preferences (batting, bowling, allrounder) from current Ashes squads.</p>                                                                        
+                                    <button class="btn btn-sm btn-info" onclick="getRecommendations('content', 'batting')">
+                                        Get Batting Recommendations
+                                    </button>
+                                    <button class="btn btn-sm btn-info" onclick="getRecommendations('content', 'bowling')">
+                                        Get Bowling Recommendations
+                                    </button>
+                                    <button class="btn btn-sm btn-info" onclick="getRecommendations('content', 'allrounder')">
+                                        Get All-rounder Recommendations
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-users text-success me-2"></i>
+                                        Collaborative Filtering
+                                    </h5>
+                                    <p class="card-text small">Finds Ashes players similar to a reference player using cosine similarity.</p>                   
+                                    <input type="text" id="refPlayer" class="form-control form-control-sm mb-2" placeholder="Enter Ashes player name (e.g., Ben Stokes, Pat Cummins)">                                                          
+                                    <small class="text-muted d-block mb-2">Enter any player name from Australia or England</small>                              
+                                    <button class="btn btn-sm btn-success" onclick="getCollaborativeRecommendations()">
+                                        Get Similar Players
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-sitemap text-warning me-2"></i>
+                                        Hybrid Recommendations
+                                    </h5>
+                                    <p class="card-text small">Combines content-based and collaborative filtering (60% + 40%)</p>
+                                    <select id="hybridPreference" class="form-select form-select-sm mb-2">
+                                        <option value="batting">Batting</option>
+                                        <option value="bowling">Bowling</option>
+                                        <option value="allrounder">All-rounder</option>
+                                    </select>
+                                    <button class="btn btn-sm btn-warning" onclick="getHybridRecommendations()">
+                                        Get Hybrid Recommendations
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-map-marker-alt text-danger me-2"></i>
+                                        Venue-Based Recommendations
+                                    </h5>
+                                    <p class="card-text small">Recommends players optimal for specific venue conditions</p>
+                                    <select id="venueSelect" class="form-select form-select-sm mb-2">
+                                        <option value="Perth">Perth</option>
+                                        <option value="Brisbane">Brisbane</option>
+                                        <option value="Adelaide">Adelaide</option>
+                                        <option value="Melbourne">Melbourne</option>
+                                        <option value="Sydney">Sydney</option>
+                                    </select>
+                                    <button class="btn btn-sm btn-danger" onclick="getVenueRecommendations()">
+                                        Get Venue Recommendations
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-star text-primary me-2"></i>
+                                        Popularity-Based
+                                    </h5>
+                                    <p class="card-text small">Recommends most popular/successful players based on wins and awards</p>
+                                    <button class="btn btn-sm btn-primary" onclick="getPopularityRecommendations()">
+                                        Get Popular Players
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-balance-scale text-secondary me-2"></i>
+                                        Algorithm Comparison
+                                    </h5>
+                                    <p class="card-text small">Compare recommendations from multiple algorithms side-by-side</p>
+                                    <button class="btn btn-sm btn-secondary" onclick="compareRecommendations()">
+                                        Compare Algorithms
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Results Display Area -->
+                    <div id="recommendationResults" class="mt-4" style="display: none;">
+                        <h5 class="mb-3">Recommendation Results</h5>
+                        <div id="recommendationContent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="row">
+        <div class="col-12 text-center">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title mb-3">Want to explore more?</h4>
+                    <p class="card-text">Check out our detailed analysis and historical statistics</p>
+                    <a href="{{ url_for('series_analysis') }}" class="btn btn-primary me-3">
+                        <i class="fas fa-chart-bar me-2"></i>View Analysis
+                    </a>
+                    <a href="#recommendations" class="btn btn-outline-primary">
+                        <i class="fas fa-info-circle me-2"></i>Learn More (RS)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Recommendation System JavaScript Functions
+function getCountryFilter() {
+    const countrySelect = document.getElementById('countrySelect');
+    return countrySelect ? countrySelect.value : '';
+}
+
+function getRecommendations(type, preference) {
+    const resultsDiv = document.getElementById('recommendationResults');
+    const contentDiv = document.getElementById('recommendationContent');
+    const country = getCountryFilter();
+    
+    // Show loading state
+    contentDiv.innerHTML = '<div class="alert alert-info">Loading recommendations...</div>';
+    resultsDiv.style.display = 'block';
+    
+    let url = `/player_recommendations?preference=${preference}&count=5`;
+    if (country) {
+        url += `&country=${encodeURIComponent(country)}`;
+    }
+    
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.error) {
+                throw new Error(data.error);
+            }
+            if (!data.recommendations || data.recommendations.length === 0) {
+                contentDiv.innerHTML = '<div class="alert alert-warning">No recommendations found. Please try again.</div>';
+                return;
+            }
+            displayRecommendations(data, data.algorithm || 'Content-Based Filtering');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            contentDiv.innerHTML = `<div class="alert alert-danger"><strong>Error:</strong> ${error.message || 'Failed to fetch recommendations. Please try again.'}</div>`;
+        });
+}
+
+function getCollaborativeRecommendations() {
+    const player = document.getElementById('refPlayer').value.trim();
+    if (!player) {
+        alert('Please enter a player name');
+        return;
+    }
+    
+    const resultsDiv = document.getElementById('recommendationResults');
+    const contentDiv = document.getElementById('recommendationContent');
+    const country = getCountryFilter();
+    
+    // Show loading state
+    contentDiv.innerHTML = '<div class="alert alert-info">Loading recommendations...</div>';
+    resultsDiv.style.display = 'block';
+    
+    let url = `/collaborative_recommendations?player=${encodeURIComponent(player)}&count=5`;
+    if (country) {
+        url += `&country=${encodeURIComponent(country)}`;
+    }
+    
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.error) {
+                throw new Error(data.error);
+            }
+            if (!data.recommendations || data.recommendations.length === 0) {
+                contentDiv.innerHTML = '<div class="alert alert-warning">No similar players found. Please try a different player name.</div>';
+                return;
+            }
+            displayRecommendations(data, data.algorithm || 'Collaborative Filtering');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            contentDiv.innerHTML = `<div class="alert alert-danger"><strong>Error:</strong> ${error.message || 'Failed to fetch recommendations. Please try again.'}</div>`;
+        });
+}
+
+function getHybridRecommendations() {
+    const preference = document.getElementById('hybridPreference').value;
+    const resultsDiv = document.getElementById('recommendationResults');
+    const contentDiv = document.getElementById('recommendationContent');
+    const country = getCountryFilter();
+    
+    // Show loading state
+    contentDiv.innerHTML = '<div class="alert alert-info">Loading recommendations...</div>';
+    resultsDiv.style.display = 'block';
+    
+    let url = `/hybrid_recommendations?preference=${preference}&count=5`;
+    if (country) {
+        url += `&country=${encodeURIComponent(country)}`;
+    }
+    
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.error) {
+                throw new Error(data.error);
+            }
+            if (!data.recommendations || data.recommendations.length === 0) {
+                contentDiv.innerHTML = '<div class="alert alert-warning">No recommendations found. Please try again.</div>';
+                return;
+            }
+            displayRecommendations(data, data.algorithm || 'Hybrid Recommendation System');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            contentDiv.innerHTML = `<div class="alert alert-danger"><strong>Error:</strong> ${error.message || 'Failed to fetch recommendations. Please try again.'}</div>`;
+        });
+}
+
+function getVenueRecommendations() {
+    const venue = document.getElementById('venueSelect').value;
+    const resultsDiv = document.getElementById('recommendationResults');
+    const contentDiv = document.getElementById('recommendationContent');
+    const country = getCountryFilter();
+    
+    // Show loading state
+    contentDiv.innerHTML = '<div class="alert alert-info">Loading recommendations...</div>';
+    resultsDiv.style.display = 'block';
+    
+    let url = `/venue_recommendations?venue=${encodeURIComponent(venue)}&count=5`;
+    if (country) {
+        url += `&country=${encodeURIComponent(country)}`;
+    }
+    
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.error) {
+                throw new Error(data.error);
+            }
+            if (!data.recommendations || data.recommendations.length === 0) {
+                contentDiv.innerHTML = '<div class="alert alert-warning">No recommendations found for this venue. Please try again.</div>';
+                return;
+            }
+            displayRecommendations(data, data.algorithm || 'Venue-Based Recommendation');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            contentDiv.innerHTML = `<div class="alert alert-danger"><strong>Error:</strong> ${error.message || 'Failed to fetch recommendations. Please try again.'}</div>`;
+        });
+}
+
+function getPopularityRecommendations() {
+    const resultsDiv = document.getElementById('recommendationResults');
+    const contentDiv = document.getElementById('recommendationContent');
+    const country = getCountryFilter();
+    
+    // Show loading state
+    contentDiv.innerHTML = '<div class="alert alert-info">Loading recommendations...</div>';
+    resultsDiv.style.display = 'block';
+    
+    let url = `/popularity_recommendations?count=5`;
+    if (country) {
+        url += `&country=${encodeURIComponent(country)}`;
+    }
+    
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.error) {
+                throw new Error(data.error);
+            }
+            if (!data.recommendations || data.recommendations.length === 0) {
+                contentDiv.innerHTML = '<div class="alert alert-warning">No recommendations found. Please try again.</div>';
+                return;
+            }
+            displayRecommendations(data, data.algorithm || 'Popularity-Based Recommendation');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            contentDiv.innerHTML = `<div class="alert alert-danger"><strong>Error:</strong> ${error.message || 'Failed to fetch recommendations. Please try again.'}</div>`;
+        });
+}
+
+function compareRecommendations() {
+    const resultsDiv = document.getElementById('recommendationResults');
+    const contentDiv = document.getElementById('recommendationContent');
+    const country = getCountryFilter();
+    
+    // Show loading state
+    contentDiv.innerHTML = '<div class="alert alert-info">Loading comparison...</div>';
+    resultsDiv.style.display = 'block';
+    
+    let url = `/recommendation_comparison?preference=batting&count=5`;
+    if (country) {
+        url += `&country=${encodeURIComponent(country)}`;
+    }
+    
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.error) {
+                throw new Error(data.error);
+            }
+            if (!data.comparison) {
+                contentDiv.innerHTML = '<div class="alert alert-warning">No comparison data available. Please try again.</div>';
+                return;
+            }
+            displayComparison(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            contentDiv.innerHTML = `<div class="alert alert-danger"><strong>Error:</strong> ${error.message || 'Failed to fetch comparison. Please try again.'}</div>`;
+        });
+}
+
+function displayRecommendations(data, algorithmName) {
+    const resultsDiv = document.getElementById('recommendationResults');
+    const contentDiv = document.getElementById('recommendationContent');
+    
+    if (!data || !data.recommendations || data.recommendations.length === 0) {
+        contentDiv.innerHTML = '<div class="alert alert-warning">No recommendations available.</div>';
+        resultsDiv.style.display = 'block';
+        return;
+    }
+    
+    let html = `<div class="alert alert-info"><strong>Algorithm:</strong> ${algorithmName || 'Unknown'}</div>`;
+    html += '<div class="table-responsive"><table class="table table-striped table-hover"><thead><tr>';
+    html += '<th>Rank</th><th>Player</th><th>Team</th><th>Role</th><th>Score/Metric</th><th>Reason</th></tr></thead><tbody>';
+    
+    data.recommendations.forEach((rec, index) => {
+        if (!rec) return;
+        html += `<tr><td>${index + 1}</td><td><strong>${rec.name || 'N/A'}</strong></td>`;
+        html += `<td>${rec.team || 'N/A'}</td><td>${rec.role || 'N/A'}</td>`;
+        const score = rec.similarity_score || rec.similarity || rec.hybrid_score || rec.venue_score || rec.popularity_score || rec.value || 'N/A';
+        html += `<td>${score}</td><td><small>${rec.reason || 'N/A'}</small></td></tr>`;
+    });
+    
+    html += '</tbody></table></div>';
+    contentDiv.innerHTML = html;
+    resultsDiv.style.display = 'block';
+}
+
+function displayComparison(data) {
+    const resultsDiv = document.getElementById('recommendationResults');
+    const contentDiv = document.getElementById('recommendationContent');
+    
+    if (!data || !data.comparison) {
+        contentDiv.innerHTML = '<div class="alert alert-warning">No comparison data available.</div>';
+        resultsDiv.style.display = 'block';
+        return;
+    }
+    
+    let html = '<div class="alert alert-secondary"><strong>Algorithm Comparison</strong></div>';
+    
+    Object.keys(data.comparison).forEach(algorithm => {
+        const algoData = data.comparison[algorithm];
+        if (!algoData || !algoData.recommendations || algoData.recommendations.length === 0) {
+            return;
+        }
+        
+        html += `<h6 class="mt-3">${algoData.algorithm || algorithm}</h6>`;
+        html += '<div class="table-responsive"><table class="table table-sm table-bordered table-hover"><thead><tr>';
+        html += '<th>Player</th><th>Team</th><th>Role</th><th>Score</th></tr></thead><tbody>';
+        
+        algoData.recommendations.forEach(rec => {
+            if (!rec) return;
+            html += `<tr><td>${rec.name || 'N/A'}</td><td>${rec.team || 'N/A'}</td><td>${rec.role || 'N/A'}</td>`;
+            const score = rec.hybrid_score || rec.popularity_score || rec.value || rec.similarity_score || rec.similarity || 'N/A';
+            html += `<td>${score}</td></tr>`;
+        });
+        
+        html += '</tbody></table></div>';
+    });
+    
+    if (html === '<div class="alert alert-secondary"><strong>Algorithm Comparison</strong></div>') {
+        html += '<div class="alert alert-warning mt-3">No comparison data available.</div>';
+    }
+    
+    contentDiv.innerHTML = html;
+    resultsDiv.style.display = 'block';
+}
+</script>
+{% endblock %} 

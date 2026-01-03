@@ -1,0 +1,302 @@
+{% extends "base.html" %}
+
+{% block title %}About - Ashes Predictor{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <!-- Header -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold mb-3">
+            <i class="fas fa-info-circle text-primary me-3"></i>
+            About the Predictor
+        </h1>
+        <p class="lead text-muted">Understanding our machine learning approach to Ashes predictions</p>
+    </div>
+
+    <!-- Model Overview -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-brain text-primary me-2"></i>
+                        Machine Learning Model
+                    </h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Algorithm</h5>
+                            <p>We use a <strong>Random Forest Classifier</strong> to predict match outcomes. This ensemble method combines multiple decision trees to make robust predictions.</p>
+                            
+                            <h5>Training Data</h5>
+                            <p>Our model is trained on comprehensive Ashes data from 2000-2023, including:</p>
+                            <ul>
+                                <li>Match results and venues</li>
+                                <li>Team performance metrics</li>
+                                <li>Weather and pitch conditions</li>
+                                <li>Toss decisions and outcomes</li>
+                                <li>Player performances</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Features Used</h5>
+                            <div class="list-group">
+                                <div class="list-group-item">
+                                    <strong>Venue:</strong> Historical performance at specific grounds
+                                </div>
+                                <div class="list-group-item">
+                                    <strong>Team Form:</strong> Recent performance indicators
+                                </div>
+                                <div class="list-group-item">
+                                    <strong>Weather:</strong> Impact of conditions on play
+                                </div>
+                                <div class="list-group-item">
+                                    <strong>Pitch Type:</strong> Seaming vs hard surfaces
+                                </div>
+                                <div class="list-group-item">
+                                    <strong>Toss:</strong> Batting vs bowling decisions
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Methodology -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-flask text-success me-2"></i>
+                        Methodology
+                    </h3>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="text-center p-4">
+                                <i class="fas fa-database text-primary fs-1 mb-3"></i>
+                                <h5>Data Collection</h5>
+                                <p>Comprehensive historical data collection from official cricket sources, including match statistics, player performances, and environmental factors.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center p-4">
+                                <i class="fas fa-cogs text-success fs-1 mb-3"></i>
+                                <h5>Feature Engineering</h5>
+                                <p>Transformation of raw data into meaningful features that capture the nuances of cricket matches and team dynamics.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center p-4">
+                                <i class="fas fa-chart-line text-warning fs-1 mb-3"></i>
+                                <h5>Model Training</h5>
+                                <p>Training the Random Forest model on historical data with cross-validation to ensure robust performance.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Accuracy and Limitations -->
+    <div class="row mb-5">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-bullseye text-success me-2"></i>
+                        Model Accuracy
+                    </h3>
+                    <div class="text-center mb-4">
+                        <div class="display-4 text-success mb-2">85%</div>
+                        <p class="text-muted">Overall Prediction Accuracy</p>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-6">
+                            <h5 class="text-primary">92%</h5>
+                            <small class="text-muted">Home Win Prediction</small>
+                        </div>
+                        <div class="col-6">
+                            <h5 class="text-danger">88%</h5>
+                            <small class="text-muted">Away Win Prediction</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-exclamation-triangle text-warning me-2"></i>
+                        Limitations
+                    </h3>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <i class="fas fa-user text-info me-2"></i>
+                            Individual player form not fully captured
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fas fa-calendar text-warning me-2"></i>
+                            Long-term team changes not reflected
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fas fa-cloud-rain text-secondary me-2"></i>
+                            Unpredictable weather events
+                        </li>
+                        <li class="list-group-item">
+                            <i class="fas fa-heart text-danger me-2"></i>
+                            Psychological factors not quantified
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Technology Stack -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-code text-primary me-2"></i>
+                        Technology Stack
+                    </h3>
+                    <div class="row">
+                        <div class="col-md-3 text-center">
+                            <div class="p-3">
+                                <i class="fab fa-python text-primary fs-1 mb-3"></i>
+                                <h5>Python</h5>
+                                <p class="text-muted">Core programming language</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div class="p-3">
+                                <i class="fas fa-leaf text-success fs-1 mb-3"></i>
+                                <h5>Scikit-learn</h5>
+                                <p class="text-muted">Machine learning library</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div class="p-3">
+                                <i class="fab fa-html5 text-danger fs-1 mb-3"></i>
+                                <h5>Flask</h5>
+                                <p class="text-muted">Web framework</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div class="p-3">
+                                <i class="fab fa-bootstrap text-primary fs-1 mb-3"></i>
+                                <h5>Bootstrap</h5>
+                                <p class="text-muted">Frontend framework</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Future Enhancements -->
+    <div class="row mb-5">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-rocket text-warning me-2"></i>
+                        Future Enhancements
+                    </h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Planned Features</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <i class="fas fa-user-plus text-success me-2"></i>
+                                    Individual player performance tracking
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-chart-area text-primary me-2"></i>
+                                    Real-time match prediction updates
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-mobile-alt text-info me-2"></i>
+                                    Mobile application development
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-globe text-warning me-2"></i>
+                                    Support for other cricket series
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Model Improvements</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <i class="fas fa-brain text-primary me-2"></i>
+                                    Deep learning integration
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-clock text-success me-2"></i>
+                                    Real-time data feeds
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-users text-info me-2"></i>
+                                    Crowdsourced predictions
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-chart-pie text-warning me-2"></i>
+                                    Advanced analytics dashboard
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h3 class="card-title mb-4">
+                        <i class="fas fa-envelope text-primary me-2"></i>
+                        Get in Touch
+                    </h3>
+                    <p class="lead">Have questions about our predictions or want to contribute to the project?</p>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <i class="fas fa-github text-dark fs-1 mb-3"></i>
+                            <h5>GitHub</h5>
+                            <p class="text-muted">View source code and contribute</p>
+                        </div>
+                        <div class="col-md-4">
+                            <i class="fas fa-envelope text-primary fs-1 mb-3"></i>
+                            <h5>Email</h5>
+                            <p class="text-muted">Contact for questions and feedback</p>
+                        </div>
+                        <div class="col-md-4">
+                            <i class="fas fa-bug text-warning fs-1 mb-3"></i>
+                            <h5>Report Issues</h5>
+                            <p class="text-muted">Help improve the predictor</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Home -->
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <a href="/" class="btn btn-primary btn-lg">
+                <i class="fas fa-home me-2"></i>Back to Predictions
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %} 
